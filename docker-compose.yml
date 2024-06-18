@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  apache:
+    build: .
+    ports:
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      - ./html:/var/www/html
+      #- ./my-php.ini:/usr/local/etc/php/php.ini
+      - ./config/http.conf:/etc/apache2/sites-available/000-default.conf
+      - ./config/http-ssl.conf:/etc/apache2/sites-available/default-ssl.conf
+      #- ./ssl/certs/selfsigned.crt:/etc/ssl/certs/selfsigned.crt
+      #- ./ssl/private/selfsigned.key:/etc/ssl/private/selfsigned.key
+    #restart: always
